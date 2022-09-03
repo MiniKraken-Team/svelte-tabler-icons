@@ -1,0 +1,66 @@
+{
+  "name": "svelte-tabler-icons",
+  "version": "1.0.0",
+  "description": "Tabler Icons for Svelte",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "run": "ts-node-esm ./src/generator.ts",
+    "build": "./node_modules/typescript/bin/tsc --module es2015 --target es5 src/generator.ts --outDir .",
+    "prepublishOnly": "pnpm build",
+    "prepare": "node generator.js"
+  },
+  "keywords": [],
+  "author": "Maxime Huylebroeck(MiniKraken-Team)",
+  "license": "MIT",
+  "dependencies": {
+    "@tabler/icons": "*"
+  },
+  "peerDependencies": {
+    "svelte": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "2.7.1",
+    "prettier-eslint": "^15.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "overrides": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint", "prettier"],
+    "rules": {
+      "prettier/prettier": ["error"],
+      "@typescript-eslint/no-inferrable-types": "error"
+    }
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  }
+}

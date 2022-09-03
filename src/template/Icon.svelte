@@ -1,0 +1,2 @@
+<script>export let size='24';export let color='currentColor';export let ariaLabel='$$SVG_ARIA_LABEL';export let strokeWidth='2';export let fillColor='none'</script>
+<svg xmlns="http://www.w3.org/2000/svg" class={$$props.class} width={size} height={size} aria-label={ariaLabel} viewBox="0 0 24 24" stroke-width={strokeWidth} stroke={color} fill={fillColor} stroke-linecap="round" stroke-linejoin="round" {...$$restProps}>$$SVG_CONTENT</svg>
