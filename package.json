@@ -1,6 +1,6 @@
 {
   "name": "svelte-tabler-icons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tabler Icons for Svelte",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "run": "ts-node-esm ./src/generator.ts",
     "build": "./node_modules/typescript/bin/tsc --module es2015 --target es5 src/generator.ts --outDir .",
     "prepublishOnly": "pnpm build",
-    "prepare": "node generator.js"
+    "postinstall": "node generator.js"
   },
   "keywords": [],
   "author": "Maxime Huylebroeck(MiniKraken-Team)",
