@@ -79,8 +79,14 @@ function downloadIcons(url) {
 function generateIcons() {
     console.log('Svelte-Tabler-Icons: Generating Svelte Tabler Icons');
     // clear index file
-    writeFileSync(indexFilePath, '');
+    if (existsSync(path.resolve(indexFilePath))) {
+        rmSync(path.resolve(indexFilePath), { recursive: true, force: true });
+    }
+    writeFileSync(path.resolve(indexFilePath), '');
     // clear index typescript declaration file
+    if (existsSync(path.resolve(indexTypeFilePath))) {
+        rmSync(path.resolve(indexTypeFilePath), { recursive: true, force: true });
+    }
     writeFileSync(indexTypeFilePath, "import { SvelteComponentTyped } from 'svelte';");
     // make icons dir if not there (because of git ignore)
     if (existsSync(path.resolve('./icons'))) {
@@ -88,7 +94,7 @@ function generateIcons() {
     }
     mkdirSync(path.resolve('./icons'));
     readdirSync(tablerFolderPath).forEach((file) => {
-        const name = `Icon-${file.slice(0, -4).toPascalCase()}`;
+        const name = `Icon${file.slice(0, -4).toPascalCase()}`;
         const fileContent = readFileSync(`${tablerFolderPath}/${file}`).toString();
         // fill in template + minify the svg a bit
         const transformedContent = svelteTemplateContent
@@ -97,7 +103,7 @@ function generateIcons() {
         // create svelte file
         writeFileSync(`${iconFolderPath}/${name}.svelte`, transformedContent);
         // append to index file
-        appendFileSync(indexFilePath, `export { default as ${name.replace('-', '')} } from './icons/${name}.svelte'\n`);
+        appendFileSync(indexFilePath, `export { default as ${name} } from './icons/${name}.svelte'\n`);
         // append index
         appendFileSync(path.resolve('./index.d.ts'), `\nexport class ${name.replace('-', '')} extends SvelteComponentTyped<{\n  size?: string | number\n  color?: string\n  ariaLabel?: string\n  strokeWidth?: string | number\n  fillColor?: string\n}> {}`);
     });
